@@ -24,7 +24,7 @@ export default function Add() {
           </div>
           <div className="my-3">
             <label className="leading-7 text-sm">Audio</label>
-            <FormInput type="file" placeholder="Audio" />
+            <FormInput type="file" placeholder="Audio" accept="audio/*" />
           </div>
         </div>
         <Button type="submit" size="large">

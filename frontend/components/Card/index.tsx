@@ -28,7 +28,7 @@ const CardList = ({ cards }: { cards: CardList[] }) => {
         <Card key={index}>
           <div className="flex flex-col">
             <h2 className="text-2xl font-bold">{card.title}</h2>
-            <p className="text-gray-500 mt-2">{card.description}</p>
+            <p className="dark:text-gray-400 mt-2">{card.description}</p>
             <div className="flex flex-wrap mt-4">
               <Tag key={index} tags={card.tags} />
             </div>
