@@ -9,6 +9,7 @@ export interface ButtonProps
   variant?: ButtonVariant;
   size?: ButtonSize;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -16,6 +17,7 @@ export const Button: React.FC<ButtonProps> = ({
   size = "small",
   variant = "primary",
   onClick,
+  disabled,
 }) => {
   const className = useMemo(() => {
     const base =
@@ -26,11 +28,12 @@ export const Button: React.FC<ButtonProps> = ({
       variant === "primary"
         ? "text-blue-jeans bg-can-can"
         : "text-can-can bg-transparent border border-can-can hover:bg-can-can hover:text-blue-jeans";
-    return `${base} ${sizeClass} ${variantClass}`;
-  }, [size, variant]);
+    const disabledClass = disabled ? "opacity-50 cursor-not-allowed" : "";
+    return `${base} ${sizeClass} ${variantClass} ${disabledClass}`;
+  }, [size, variant, disabled]);
 
   return (
-    <button className={className} onClick={onClick}>
+    <button className={className} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   );

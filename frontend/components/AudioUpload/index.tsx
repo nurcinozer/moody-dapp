@@ -10,7 +10,7 @@ export const AudioUpload = ({ setAudio }: any) => {
   const handleAudio = (e: any) => {
     setAudioState(URL.createObjectURL(e.target.files[0]));
     setAudio(e.target.files[0]);
-    console.log(e.target.files[0]);
+    console.log(audio);
   };
 
   return (

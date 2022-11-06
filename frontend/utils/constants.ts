@@ -151,5 +151,12 @@ const LIVEPEER_KEY = process.env.NEXT_PUBLIC_LIVEPEER_KEY;
 const SUB_GRAPH_BASE_URL = "https://api.thegraph.com";
 const SUB_GRAPH_NAME = "nurcinozer/moody";
 const SUB_GRAPH_URL = `${SUB_GRAPH_BASE_URL}/subgraphs/name/${SUB_GRAPH_NAME}`;
+const WEB3_STORAGE_KEY = process.env.NEXT_PUBLIC_WEB3_STORAGE_KEY;
 
-export { CONTRACT_ABI, CONTRACT_ADDRESS, LIVEPEER_KEY, SUB_GRAPH_URL };
+export {
+  CONTRACT_ABI,
+  CONTRACT_ADDRESS,
+  LIVEPEER_KEY,
+  SUB_GRAPH_URL,
+  WEB3_STORAGE_KEY,
+};

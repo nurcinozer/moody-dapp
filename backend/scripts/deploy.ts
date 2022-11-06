@@ -8,7 +8,7 @@ async function main() {
 
   console.log("Moody deployed to:", moody.address);
 
-  // Moody deployed to: 0xc3BE15770bD0682CC21578C976e9a72024FC53f4
+  // Moody deployed to: 0x71d9453f70b5784908A0d41ABDA5CBD8DeE45957
 }
 
 main()

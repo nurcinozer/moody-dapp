@@ -9,3 +9,5 @@ export const categories = [
   { value: "confused", label: "Confused" },
   { value: "stressed", label: "Stressed" },
 ];
+
+export const categoryValues = categories.map((category) => category.value);

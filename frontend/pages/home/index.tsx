@@ -1,11 +1,12 @@
 import { useAccount } from "wagmi";
 import { useRouter } from "next/router";
-import { Footer, Hero, Navbar, Spinner } from "../../components";
+import { Category, Footer, Hero, Navbar, Spinner } from "../../components";
 import Card from "../../components/Card";
 import { useEffect, useState } from "react";
 import { ApolloClient } from "../../clients";
 import { GET_ALL_MOODS } from "../../queries";
 import { Mood } from "../../types";
+import { categoryValues } from "../../consts";
 
 export default function Home() {
   const router = useRouter();
@@ -16,6 +17,7 @@ export default function Home() {
   const [loading, setLoading] = useState<Boolean>(true);
   const [query] = useState<String>("");
   const [category] = useState<String>("all moods");
+  const [categories, setCategories] = useState<String[]>(categoryValues);
 
   const fetchMoods = async () => {
     setLoading(true);
@@ -37,8 +39,8 @@ export default function Home() {
       },
       fetchPolicy: "network-only",
     }).then(({ data }) => {
-      console.log("moods: ", data.moods);
       setMoods(data.moods);
+      setCategories(data.moods.map((mood: Mood) => mood.category));
       setLoading(false);
     });
   };
@@ -60,7 +62,11 @@ export default function Home() {
       <Navbar />
       <div className="flex-1">
         <Hero />
-        {/* <TagList tags={statics} className="mx-auto" /> */}
+        <div className="flex flex-wrap justify-center pb-16 gap-3 max-w-2xl mx-auto">
+          {categories.map((category: String, index) => (
+            <Category key={index} category={category} />
+          ))}
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 m-5">
           {moods.map((mood: Mood) => (
             <Card key={mood.id} mood={mood} />

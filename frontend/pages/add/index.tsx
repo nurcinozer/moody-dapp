@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
-  AudioUpload,
   Button,
   Footer,
   FormInput,
   FormSelect,
   Navbar,
 } from "../../components";
-import { useCreateAsset } from "@livepeer/react";
 import getContract from "../../utils/contract";
 import { categories } from "../../consts";
+import { useRouter } from "next/router";
+import saveToIPFS from "../../utils/saveToIPFS";
+import { TiUpload } from "react-icons/ti";
 
 type Data = {
   mood: string;
@@ -19,46 +20,42 @@ type Data = {
 };
 
 export default function Add() {
-  const { mutate: createAsset, data: asset } = useCreateAsset();
-
   const [category, setCategory] = useState(categories[0].value);
   const [message, setMessage] = useState("");
-  const [audio, setAudio] = useState<File>();
+  const [image, setImage] = useState<File>();
   const [uploadData] = useState<Data>();
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
-  const uploadAudio = async () => {
-    createAsset({
-      name: message,
-      file: audio,
-      url: "https://livepeer.studio",
-    });
+  const imageRef = useRef<HTMLInputElement>(null);
+
+  const uploadImage = async () => {
+    setLoading(true);
+    const cid = await saveToIPFS(image);
+    setLoading(false);
+    return cid;
   };
 
-  const saveAudio = async (data = uploadData) => {
-    let contract = await getContract();
+  const handleSubmit = async () => {
+    const imageCID = await uploadImage();
+    await saveMood({
+      mood: imageCID,
+      message,
+      category,
+      date: new Date().toISOString(),
+    });
+    router.push("/");
+  };
 
+  const saveMood = async (data = uploadData) => {
+    const contract = await getContract();
     if (!contract || !data) return;
-
-    console.log(data);
-
     await contract.uploadMood(
       data.mood,
       data.message,
       data.category,
       data.date
     );
-  };
-
-  const handleSubmit = async () => {
-    await uploadAudio();
-    if (asset) {
-      await saveAudio({
-        mood: asset.id,
-        message,
-        category,
-        date: new Date().toISOString(),
-      });
-    }
   };
 
   return (
@@ -87,8 +84,36 @@ export default function Add() {
               />
             </div>
             <div className="my-3">
-              <label className="leading-7 text-sm">Audio</label>
-              <AudioUpload setAudio={setAudio} />
+              <label className="leading-7 text-sm">Image</label>
+              <div
+                onClick={() => {
+                  imageRef.current?.click();
+                }}
+                className="cursor-pointer border-2 w-full border-dashed rounded-md h-full p-5 items-center justify-center flex">
+                {image ? (
+                  <img
+                    src={URL.createObjectURL(image)}
+                    className="w-full h-full"
+                    onClick={() => {
+                      imageRef.current?.click();
+                    }}
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center">
+                    <TiUpload />
+                    <span className="block text-gray-400">Upload image</span>
+                  </div>
+                )}
+              </div>
+              <FormInput
+                type="file"
+                accept="image/*"
+                className="hidden"
+                innerRef={imageRef}
+                onChange={(e) => {
+                  if (e.target.files) setImage(e.target.files[0]);
+                }}
+              />
             </div>
           </div>
           <Button type="submit" size="large" onClick={handleSubmit}>
