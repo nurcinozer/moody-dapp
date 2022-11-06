@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Player, Tag } from "..";
 import { Mood } from "../../types";
 import Image from "next/image";
+import getImage from "../../lib/getImage";
 
 type CardProps = {
   children: React.ReactNode;
@@ -23,12 +24,11 @@ const Mood = ({ mood }: { mood: Mood }) => {
     <Link href={`/mood/${mood.id}`} className="cursor-pointer">
       <Card>
         <div className="flex flex-col">
-          {/* <Image
-            src={`https://dweb.link/ipfs/${mood.hash}`}
-            width={300}
-            height={300}
+          <Image
+            src={getImage(mood.hash)}
             alt="image"
-          /> */}
+            className="w-60 h-40 rounded-lg object-cover"
+          />
           <p className="dark:text-gr  ay-400 mt-2">
             {mood.message.length > 100
               ? mood.message.slice(0, 100) + "..."

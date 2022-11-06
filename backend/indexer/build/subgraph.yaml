@@ -1,0 +1,23 @@
+specVersion: 0.0.4
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Moody
+    network: mumbai
+    source:
+      address: "0xCb1c10417Bfd806CfDb6D7575dCba5Def5fE26db"
+      abi: Moody
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - MoodUploaded
+      abis:
+        - name: Moody
+          file: Moody/abis/Moody.json
+      eventHandlers:
+        - event: MoodUploaded(uint256,string,string,string,string,address)
+          handler: handleMoodUploaded
+      file: Moody/Moody.wasm

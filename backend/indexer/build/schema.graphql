@@ -1,0 +1,9 @@
+type Mood @entity {
+  id: ID!
+  hash: String! # string
+  message: String # string
+  category: String # string
+  date: String # string
+  author: Bytes! # address
+  createdAt: BigInt! # timestamp
+}

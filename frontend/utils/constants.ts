@@ -146,12 +146,15 @@ const CONTRACT_ABI = [
     type: "function",
   },
 ];
-const CONTRACT_ADDRESS = "0xc3BE15770bD0682CC21578C976e9a72024FC53f4";
+const CONTRACT_ADDRESS = "0xCb1c10417Bfd806CfDb6D7575dCba5Def5fE26db";
 const LIVEPEER_KEY = process.env.NEXT_PUBLIC_LIVEPEER_KEY;
 const SUB_GRAPH_BASE_URL = "https://api.thegraph.com";
-const SUB_GRAPH_NAME = "nurcinozer/moody";
+const SUB_GRAPH_NAME = "nurcinozer/moody-graph";
 const SUB_GRAPH_URL = `${SUB_GRAPH_BASE_URL}/subgraphs/name/${SUB_GRAPH_NAME}`;
 const WEB3_STORAGE_KEY = process.env.NEXT_PUBLIC_WEB3_STORAGE_KEY;
+const IPFS_GATEWAY = "https://w3s.link/ipfs/";
+const IMAGEKIT_URL =
+  "https://ik.imagekit.io/" + process.env.NEXT_PUBLIC_IMAGEKIT_ID + "/";
 
 export {
   CONTRACT_ABI,
@@ -159,4 +162,6 @@ export {
   LIVEPEER_KEY,
   SUB_GRAPH_URL,
   WEB3_STORAGE_KEY,
+  IPFS_GATEWAY,
+  IMAGEKIT_URL,
 };
