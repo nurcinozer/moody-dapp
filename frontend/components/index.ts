@@ -9,3 +9,5 @@ export * from "./Emoji";
 export * from "./Tag";
 export * from "./Card";
 export * from "./Footer";
+export * from "./Input";
+export * from "./Select";

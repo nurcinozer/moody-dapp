@@ -19,7 +19,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   const className = useMemo(() => {
     const base =
-      "inline-flex items-center border-0 focus:outline-none rounded-full mt-4 md:mt-0 text-base";
+      "inline-flex items-center justify-center text-center border-0 focus:outline-none rounded-full mt-4 md:mt-0 text-base h-12";
     const sizeClass =
       size === "large" ? "text-lg py-2 px-8" : "text-sm py-2 px-3";
     const variantClass =

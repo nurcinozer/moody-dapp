@@ -18,6 +18,9 @@ module.exports = {
         colorful:
           "rgb(251, 235, 235) 0px 0px 0px 3px, rgb(161, 184, 220) 0px 0px 0px 6px, rgb(214, 152, 191) 0px 0px 0px 9px, rgb(205, 200, 224) 0px 0px 0px 12px",
       },
+      fontFamily: {
+        sans: ["Quicksand", "sans-serif"],
+      },
     },
   },
   plugins: [],

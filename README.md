@@ -4,4 +4,4 @@
 
 ## What is moody?
 
-**moody** is a decentralized application that allows users to share their mood with everyone on the Polygon network. Users can also view the moods of other users and see the most popular moods of the day.
+**moody** is a decentralized application that allows users to share their mood with everyone on the Polygon network.
