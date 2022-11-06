@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { ApolloClient } from "../../clients";
-import { Navbar, Footer, Spinner, Player } from "../../components";
+import { Navbar, Footer, Spinner } from "../../components";
 import { GET_MOOD_BY_ID } from "../../queries";
 import { Mood as MoodType } from "../../types";
 
@@ -47,7 +47,11 @@ export default function Mood() {
       {mood && (
         <div className="container px-5 py-5 md:py-10 mx-auto flex">
           <div className="lg:w-1/3 md:w-1/2 bg-transparent rounded-lg p-8 flex flex-col mx-auto w-full mt-10 md:mt-0 relative z-10 shadow-colorful">
-            {/* <Player id={mood.hash} /> */}
+            <img
+              src={`https://${mood.hash}.ipfs.w3s.link/`}
+              alt="image"
+              className="w-full h-44 rounded-lg object-cover"
+            />
             <h2 className="text-2xl mb-1 font-medium title-font text-can-can mt-5">
               {mood.category}
             </h2>

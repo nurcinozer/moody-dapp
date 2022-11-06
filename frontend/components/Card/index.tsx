@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { Player, Tag } from "..";
+import { Tag } from "..";
 import { Mood } from "../../types";
-import Image from "next/image";
-import getImage from "../../lib/getImage";
 
 type CardProps = {
   children: React.ReactNode;

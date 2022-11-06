@@ -16,7 +16,6 @@
 - [Ether.js](https://docs.ethers.io/v5/)
 - [IPFS](https://ipfs.io/)
 - [Web3 Storage](https://web3.storage/)
-- [ImageKit](https://imagekit.io/)
 - [Hardhat](https://hardhat.org/)
 
 ## Installation
