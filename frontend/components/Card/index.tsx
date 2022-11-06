@@ -24,10 +24,10 @@ const Mood = ({ mood }: { mood: Mood }) => {
     <Link href={`/mood/${mood.id}`} className="cursor-pointer">
       <Card>
         <div className="flex flex-col">
-          <Image
-            src={getImage(mood.hash)}
+          <img
+            src={`https://${mood.hash}.ipfs.w3s.link/`}
             alt="image"
-            className="w-60 h-40 rounded-lg object-cover"
+            className="w-full h-44 rounded-lg object-cover"
           />
           <p className="dark:text-gr  ay-400 mt-2">
             {mood.message.length > 100
@@ -36,6 +36,13 @@ const Mood = ({ mood }: { mood: Mood }) => {
           </p>
           <div className="flex flex-wrap mt-4">
             <Tag>{mood.category}</Tag>
+            <p>
+              {new Date(mood.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
           </div>
         </div>
       </Card>

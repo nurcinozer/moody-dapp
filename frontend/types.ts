@@ -3,4 +3,5 @@ export type Mood = {
   category: string;
   message: string;
   hash: string;
+  date: string;
 };

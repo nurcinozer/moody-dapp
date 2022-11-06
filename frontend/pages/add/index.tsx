@@ -25,14 +25,11 @@ export default function Add() {
   const [image, setImage] = useState<File>();
   const [uploadData] = useState<Data>();
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
 
   const imageRef = useRef<HTMLInputElement>(null);
 
   const uploadImage = async () => {
-    setLoading(true);
     const cid = await saveToIPFS(image);
-    setLoading(false);
     return cid;
   };
 

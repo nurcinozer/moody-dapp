@@ -19,7 +19,7 @@ export const Toggle = () => {
     <button
       aria-label="Toggle Dark Mode"
       type="button"
-      className="p-4 order-2 md:order-3 mt-4 md:mt-0 bg-can-can dark:bg-gray-800 rounded-full"
+      className="p-4 order-2 md:order-3 mt-4 md:mt-0 md:ml-4 bg-can-can dark:bg-gray-800 rounded-full"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
       {theme === "dark" ? (
         <TiAdjustBrightness className="fill-white" />

@@ -40,51 +40,57 @@ export const Navbar = () => {
                 <TiPlus /> Add mood
               </Button>
             )}
-            <ConnectButton.Custom>
-              {({ account, chain, openConnectModal, mounted }) => {
-                const ready = mounted;
-                const connected = ready && account && chain;
-                return (
-                  <div
-                    {...(!ready && {
-                      "aria-hidden": true,
-                      style: {
-                        opacity: 0,
-                        pointerEvents: "none",
-                        userSelect: "none",
-                      },
-                    })}>
-                    {(() => {
-                      if (!connected) {
+            <div className="flex flex-col">
+              <ConnectButton.Custom>
+                {({ account, chain, openConnectModal, mounted }) => {
+                  const ready = mounted;
+                  const connected = ready && account && chain;
+                  return (
+                    <div
+                      {...(!ready && {
+                        "aria-hidden": true,
+                        style: {
+                          opacity: 0,
+                          pointerEvents: "none",
+                          userSelect: "none",
+                        },
+                      })}>
+                      {(() => {
+                        if (!connected) {
+                          return (
+                            <Button
+                              variant="secondary"
+                              onClick={openConnectModal}>
+                              Connect wallet <TiArrowRight />
+                            </Button>
+                          );
+                        }
+                        if (chain.unsupported) {
+                          return (
+                            <Button
+                              variant="secondary"
+                              onClick={openConnectModal}>
+                              Wrong network <TiTimes />
+                            </Button>
+                          );
+                        }
                         return (
                           <Button
                             variant="secondary"
-                            onClick={openConnectModal}>
-                            Connect wallet <TiArrowRight />
+                            onClick={() => {
+                              navigator.clipboard.writeText(account.address);
+                            }}>
+                            {account.displayName}
                           </Button>
                         );
-                      }
-                      if (chain.unsupported) {
-                        return (
-                          <Button
-                            variant="secondary"
-                            onClick={openConnectModal}>
-                            Wrong network <TiTimes />
-                          </Button>
-                        );
-                      }
-                      return (
-                        <Button variant="secondary" onClick={openConnectModal}>
-                          {account.displayName}
-                        </Button>
-                      );
-                    })()}
-                  </div>
-                );
-              }}
-            </ConnectButton.Custom>
-            <Toggle />
+                      })()}
+                    </div>
+                  );
+                }}
+              </ConnectButton.Custom>
+            </div>
           </div>
+          <Toggle />
         </>
       )}
     </div>
