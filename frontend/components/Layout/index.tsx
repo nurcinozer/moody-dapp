@@ -1,4 +1,4 @@
-import { Footer, Meta, Navbar } from "..";
+import { Meta } from "..";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -9,11 +9,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     <>
       <Meta />
       <section className={`flex flex-col h-screen`}>
-        <Navbar />
-        <div className="container p-5 mx-auto flex-grow font-sans">
-          {children}
-        </div>
-        <Footer />
+        <div className="container mx-auto flex-grow font-sans">{children}</div>
       </section>
     </>
   );

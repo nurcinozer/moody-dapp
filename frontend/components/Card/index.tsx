@@ -23,7 +23,7 @@ interface CardList {
 
 const CardList = ({ cards }: { cards: CardList[] }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 m-5">
       {cards.map((card, index) => (
         <Card key={index}>
           <div className="flex flex-col">

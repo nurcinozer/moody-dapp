@@ -4,12 +4,14 @@ type FormInputSize = "medium" | "large";
 
 export interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   $size?: FormInputSize;
+  innerRef?: React.Ref<HTMLInputElement>;
 }
 
 export const FormInput: React.FC<FormInputProps> = ({
   $size = "medium",
   placeholder,
   type,
+  innerRef,
   ...rest
 }) => {
   const [focused, setFocused] = useState(false);
@@ -33,6 +35,7 @@ export const FormInput: React.FC<FormInputProps> = ({
       onFocus={() => setFocused(true)}
       onBlur={() => setFocused(false)}
       type={type}
+      ref={innerRef}
       {...rest}
     />
   );

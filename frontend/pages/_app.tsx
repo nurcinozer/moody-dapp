@@ -6,6 +6,8 @@ import { publicProvider } from "wagmi/providers/public";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 import { Layout } from "../components";
+import { LivepeerConfig } from "@livepeer/react";
+import { LivePeerClient } from "../clients";
 
 const { chains, provider } = configureChains(
   [chain.polygonMumbai],
@@ -28,9 +30,11 @@ function App({ Component, pageProps }: AppProps) {
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
         <ThemeProvider attribute="class" defaultTheme="system">
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <LivepeerConfig client={LivePeerClient}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </LivepeerConfig>
         </ThemeProvider>
       </RainbowKitProvider>
     </WagmiConfig>

@@ -5,7 +5,7 @@ export const logo = "/logo.svg";
 
 export const Footer = () => {
   return (
-    <div className="container py-8 mx-auto flex items-center sm:flex-row flex-col font-sans">
+    <div className="sticky top-[100vh] container py-8 mx-auto flex items-center sm:flex-row flex-col font-sans">
       <Link href="/" className="flex md:justify-start justify-center">
         <Image src={logo} alt="Logo" width={150} height={35} />
       </Link>
