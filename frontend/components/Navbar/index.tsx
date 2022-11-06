@@ -29,7 +29,7 @@ export const Navbar = () => {
           </Link>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
             {isConnected && (
-              <Link className="mr-5 hover:text-can-can" href="/">
+              <Link className="mr-5 hover:text-can-can" href="/my-moods">
                 My moods
               </Link>
             )}

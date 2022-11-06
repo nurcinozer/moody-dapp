@@ -30,4 +30,4 @@ const TagList = ({ tags, className }: TagListProps) => {
   );
 };
 
-export default TagList;
+export { Tag, TagList };

@@ -146,9 +146,10 @@ const CONTRACT_ABI = [
     type: "function",
   },
 ];
-
 const CONTRACT_ADDRESS = "0xc3BE15770bD0682CC21578C976e9a72024FC53f4";
-
 const LIVEPEER_KEY = process.env.NEXT_PUBLIC_LIVEPEER_KEY;
+const SUB_GRAPH_BASE_URL = "https://api.thegraph.com";
+const SUB_GRAPH_NAME = "nurcinozer/moody";
+const SUB_GRAPH_URL = `${SUB_GRAPH_BASE_URL}/subgraphs/name/${SUB_GRAPH_NAME}`;
 
-export { CONTRACT_ABI, CONTRACT_ADDRESS, LIVEPEER_KEY };
+export { CONTRACT_ABI, CONTRACT_ADDRESS, LIVEPEER_KEY, SUB_GRAPH_URL };

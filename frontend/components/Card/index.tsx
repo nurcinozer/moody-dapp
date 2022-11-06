@@ -1,4 +1,6 @@
-import Tag from "../Tag";
+import Link from "next/link";
+import { Player, Tag } from "..";
+import { Mood } from "../../types";
 
 type CardProps = {
   children: React.ReactNode;
@@ -15,28 +17,24 @@ const Card = ({ children, className, ...props }: CardProps): JSX.Element => {
   );
 };
 
-interface CardList {
-  title: string;
-  description: string;
-  tags: string[];
-}
-
-const CardList = ({ cards }: { cards: CardList[] }) => {
+const Mood = ({ mood }: { mood: Mood }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 m-5">
-      {cards.map((card, index) => (
-        <Card key={index}>
-          <div className="flex flex-col">
-            <h2 className="text-2xl font-bold">{card.title}</h2>
-            <p className="dark:text-gray-400 mt-2">{card.description}</p>
-            <div className="flex flex-wrap mt-4">
-              <Tag key={index} tags={card.tags} />
-            </div>
+    <Link href={`/mood/${mood.id}`} className="cursor-pointer">
+      <Card>
+        <div className="flex flex-col">
+          <Player id={mood.hash} />
+          <p className="dark:text-gray-400 mt-2">
+            {mood.message.length > 100
+              ? mood.message.slice(0, 100) + "..."
+              : mood.message}
+          </p>
+          <div className="flex flex-wrap mt-4">
+            <Tag>{mood.category}</Tag>
           </div>
-        </Card>
-      ))}
-    </div>
+        </div>
+      </Card>
+    </Link>
   );
 };
 
-export default CardList;
+export default Mood;

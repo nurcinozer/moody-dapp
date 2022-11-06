@@ -9,6 +9,7 @@ import {
 } from "../../components";
 import { useCreateAsset } from "@livepeer/react";
 import getContract from "../../utils/contract";
+import { categories } from "../../consts";
 
 type Data = {
   mood: string;
@@ -18,13 +19,7 @@ type Data = {
 };
 
 export default function Add() {
-  const categories = [
-    { value: "1", label: "Happy" },
-    { value: "2", label: "Sad" },
-    { value: "3", label: "Angry" },
-  ];
-
-  const { mutate: createAsset, data: asset, uploadProgress } = useCreateAsset();
+  const { mutate: createAsset, data: asset } = useCreateAsset();
 
   const [category, setCategory] = useState(categories[0].value);
   const [message, setMessage] = useState("");
@@ -35,7 +30,7 @@ export default function Add() {
     createAsset({
       name: message,
       file: audio,
-      url: "https://livepeer.com",
+      url: "https://livepeer.studio",
     });
   };
 
@@ -69,7 +64,7 @@ export default function Add() {
   return (
     <>
       <Navbar />
-      <div className="container px-5 py-5 md:py-24 mx-auto flex">
+      <div className="container px-5 py-5 md:py-10 mx-auto flex">
         <div className="lg:w-1/3 md:w-1/2 bg-transparent rounded-lg p-8 flex flex-col mx-auto w-full mt-10 md:mt-0 relative z-10 shadow-colorful">
           <h2 className="text-2xl mb-1 font-medium title-font text-can-can">
             Share your mood
